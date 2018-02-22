@@ -1,0 +1,2140 @@
+/-----------------------------------------
+| State-action rewards from Q-Learning
+\-----------------------------------------
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='left', left=None)
+ -- forward : 0.57
+ -- None : -4.08
+ -- right : 0.39
+ -- left : 1.01
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : -3.92
+ -- right : 0.00
+ -- left : 1.47
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='left', left='right')
+ -- forward : 0.63
+ -- None : -3.98
+ -- right : 1.00
+ -- left : 1.27
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right=None, left='left')
+ -- forward : -9.41
+ -- None : 0.00
+ -- right : 0.82
+ -- left : -9.71
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='forward', left=None)
+ -- forward : 0.15
+ -- None : 0.00
+ -- right : 0.38
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right=None, left='right')
+ -- forward : 0.00
+ -- None : -5.36
+ -- right : 1.93
+ -- left : 0.22
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right=None, left='forward')
+ -- forward : 0.45
+ -- None : -4.85
+ -- right : 0.00
+ -- left : 0.76
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='right', left='left')
+ -- forward : 2.81
+ -- None : -4.82
+ -- right : -0.03
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='forward', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.63
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right=None, left='forward')
+ -- forward : 1.98
+ -- None : -4.87
+ -- right : 0.83
+ -- left : 0.36
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='left', left=None)
+ -- forward : -9.89
+ -- None : 0.57
+ -- right : 0.00
+ -- left : -10.30
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='forward', left='left')
+ -- forward : 0.00
+ -- None : 1.05
+ -- right : 0.00
+ -- left : -36.61
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='left', left='forward')
+ -- forward : -35.70
+ -- None : 2.01
+ -- right : -18.20
+ -- left : -36.09
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='left', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.90
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right='left', left='forward')
+ -- forward : 0.00
+ -- None : -4.18
+ -- right : 0.00
+ -- left : 0.36
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right='right', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 2.03
+ -- left : -0.40
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='forward', left=None)
+ -- forward : -39.85
+ -- None : 1.73
+ -- right : 0.00
+ -- left : -40.29
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='right', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.42
+ -- left : -9.03
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='right', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.46
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='right', left='right')
+ -- forward : -9.17
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -8.55
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='forward', left='left')
+ -- forward : -35.18
+ -- None : 1.95
+ -- right : 0.00
+ -- left : -35.80
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right=None, left='forward')
+ -- forward : 0.00
+ -- None : 1.34
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right='forward', left='left')
+ -- forward : 1.84
+ -- None : 0.00
+ -- right : 1.11
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='forward', left=None)
+ -- forward : -0.46
+ -- None : -4.38
+ -- right : 2.50
+ -- left : 0.99
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right=None, left='right')
+ -- forward : 0.00
+ -- None : -3.69
+ -- right : -0.21
+ -- left : 1.42
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='right', left='left')
+ -- forward : 0.00
+ -- None : 2.23
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='forward', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.05
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right='left', left=None)
+ -- forward : 0.35
+ -- None : -4.75
+ -- right : 2.45
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='left', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.63
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right=None, left='right')
+ -- forward : 0.00
+ -- None : 2.30
+ -- right : 0.01
+ -- left : -8.20
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='right', left='left')
+ -- forward : -10.42
+ -- None : -0.26
+ -- right : 2.80
+ -- left : -9.81
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right=None, left=None)
+ -- forward : -9.97
+ -- None : 1.51
+ -- right : 0.30
+ -- left : -10.10
+
+TrafficStates(waypoint='left', light='green', oncoming='right', right='forward', left='forward')
+ -- forward : 0.91
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='right', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.42
+ -- left : -9.27
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='right', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : -18.48
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='right', left='left')
+ -- forward : 0.57
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.42
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='right', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.71
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right=None, left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.86
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='left', left='left')
+ -- forward : 0.00
+ -- None : 1.73
+ -- right : 0.80
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='right', left='forward')
+ -- forward : -36.84
+ -- None : 1.99
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='right', left='left')
+ -- forward : -0.06
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right=None, left='forward')
+ -- forward : -35.27
+ -- None : 2.37
+ -- right : -18.60
+ -- left : -36.35
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='forward', left='left')
+ -- forward : 0.00
+ -- None : 2.31
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='forward', left=None)
+ -- forward : 1.89
+ -- None : -4.55
+ -- right : 0.32
+ -- left : 0.43
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='right', left='forward')
+ -- forward : 0.00
+ -- None : 1.19
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='right', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.91
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right='left', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.49
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right=None, left='right')
+ -- forward : 0.79
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.42
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='right', left='forward')
+ -- forward : 1.02
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='right', left='left')
+ -- forward : -8.25
+ -- None : 0.00
+ -- right : 1.27
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='left', left='forward')
+ -- forward : 1.31
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -0.08
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='left', left=None)
+ -- forward : 0.11
+ -- None : -3.94
+ -- right : 1.10
+ -- left : 0.33
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='left', left=None)
+ -- forward : 0.17
+ -- None : -4.62
+ -- right : 0.59
+ -- left : 0.56
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='left', left='left')
+ -- forward : 0.00
+ -- None : 2.61
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right=None, left='forward')
+ -- forward : 0.16
+ -- None : -4.74
+ -- right : 0.48
+ -- left : 2.20
+
+TrafficStates(waypoint='left', light='green', oncoming='right', right=None, left=None)
+ -- forward : 0.82
+ -- None : -5.23
+ -- right : 0.31
+ -- left : 2.26
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='left', left='forward')
+ -- forward : 0.00
+ -- None : 1.67
+ -- right : -20.82
+ -- left : -40.26
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='left', left='right')
+ -- forward : 2.88
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='right', left='left')
+ -- forward : 0.00
+ -- None : 2.85
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right=None, left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 2.26
+ -- left : -0.35
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='right', left='left')
+ -- forward : -9.80
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='forward', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.46
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='forward', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.44
+ -- left : 1.70
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right=None, left=None)
+ -- forward : 1.02
+ -- None : -4.89
+ -- right : 0.16
+ -- left : -0.39
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='right', left='left')
+ -- forward : -8.93
+ -- None : 1.34
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right=None, left='left')
+ -- forward : 0.75
+ -- None : -4.97
+ -- right : -0.37
+ -- left : 2.15
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right='forward', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.32
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='right', left=None)
+ -- forward : -10.02
+ -- None : 0.00
+ -- right : 0.75
+ -- left : -10.62
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='left', left='left')
+ -- forward : 0.94
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='left', left='forward')
+ -- forward : 0.00
+ -- None : 1.34
+ -- right : -17.46
+ -- left : -36.64
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='right', left='left')
+ -- forward : -9.87
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right=None, left='forward')
+ -- forward : 0.00
+ -- None : 2.79
+ -- right : -17.68
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='left', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.64
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='left', left='forward')
+ -- forward : -35.45
+ -- None : 0.00
+ -- right : -17.38
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='left', left='forward')
+ -- forward : 0.00
+ -- None : 1.61
+ -- right : -17.20
+ -- left : -36.72
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='left', left=None)
+ -- forward : -9.29
+ -- None : 1.45
+ -- right : 0.00
+ -- left : -10.32
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='forward', left='right')
+ -- forward : -35.97
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right=None, left='forward')
+ -- forward : 0.94
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.33
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right=None, left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.18
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='right', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 2.19
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='forward', left=None)
+ -- forward : 0.00
+ -- None : 0.68
+ -- right : 1.32
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='forward', left='right')
+ -- forward : 0.00
+ -- None : 1.20
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='left', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.50
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right=None, left='forward')
+ -- forward : -39.71
+ -- None : 1.14
+ -- right : -17.70
+ -- left : -40.21
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='right', left='right')
+ -- forward : 0.00
+ -- None : 0.96
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='right', left=None)
+ -- forward : -9.45
+ -- None : 0.00
+ -- right : 0.42
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right=None, left=None)
+ -- forward : 0.36
+ -- None : -4.24
+ -- right : 0.89
+ -- left : 0.59
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right=None, left='right')
+ -- forward : -9.24
+ -- None : 0.00
+ -- right : 1.41
+ -- left : -9.65
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='left', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.39
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='forward', left='forward')
+ -- forward : 1.48
+ -- None : -4.20
+ -- right : 0.82
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='right', left='right')
+ -- forward : 1.52
+ -- None : -3.94
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right=None, left=None)
+ -- forward : 2.85
+ -- None : -4.22
+ -- right : -0.44
+ -- left : 0.63
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='right', left='forward')
+ -- forward : -36.89
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -35.21
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='forward', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -35.96
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right=None, left='right')
+ -- forward : 0.00
+ -- None : 0.98
+ -- right : 2.58
+ -- left : -9.90
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 1.68
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='right', right=None, left='forward')
+ -- forward : 0.56
+ -- None : 0.00
+ -- right : -0.19
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right='left', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 2.36
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='forward', left='right')
+ -- forward : -35.59
+ -- None : 0.23
+ -- right : 0.00
+ -- left : -36.80
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right=None, left='left')
+ -- forward : 1.26
+ -- None : -3.98
+ -- right : 0.00
+ -- left : -0.10
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='left', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 2.27
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='forward', left='right')
+ -- forward : -36.40
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='forward', left=None)
+ -- forward : -40.48
+ -- None : 0.39
+ -- right : 1.16
+ -- left : -38.82
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='left', left='forward')
+ -- forward : 1.00
+ -- None : -4.81
+ -- right : 2.32
+ -- left : 1.15
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right=None, left='forward')
+ -- forward : -38.88
+ -- None : 1.56
+ -- right : -18.49
+ -- left : -39.99
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right=None, left=None)
+ -- forward : -9.88
+ -- None : 1.37
+ -- right : -0.03
+ -- left : -10.25
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right=None, left=None)
+ -- forward : 2.29
+ -- None : -5.82
+ -- right : -0.09
+ -- left : 0.52
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='left', left='right')
+ -- forward : 0.00
+ -- None : -5.12
+ -- right : -0.38
+ -- left : 0.54
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right=None, left='right')
+ -- forward : -0.17
+ -- None : 0.00
+ -- right : -0.23
+ -- left : 1.97
+
+TrafficStates(waypoint='left', light='green', oncoming='right', right='left', left=None)
+ -- forward : 0.00
+ -- None : -4.43
+ -- right : 0.00
+ -- left : 1.55
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='forward', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 2.67
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='right', left=None)
+ -- forward : -9.73
+ -- None : 1.51
+ -- right : 0.52
+ -- left : -9.77
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='forward', left=None)
+ -- forward : -36.47
+ -- None : 2.57
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='forward', left='forward')
+ -- forward : 0.12
+ -- None : 0.00
+ -- right : -0.06
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='left', left='forward')
+ -- forward : -40.22
+ -- None : 1.63
+ -- right : -18.05
+ -- left : -40.42
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right=None, left='forward')
+ -- forward : 0.05
+ -- None : -4.35
+ -- right : 0.18
+ -- left : 2.33
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right=None, left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.27
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='forward', left=None)
+ -- forward : 0.94
+ -- None : -5.36
+ -- right : 2.05
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right=None, left='left')
+ -- forward : 1.08
+ -- None : -4.57
+ -- right : 0.00
+ -- left : 2.10
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='left', left='right')
+ -- forward : -8.13
+ -- None : 1.24
+ -- right : -0.10
+ -- left : -8.52
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='left', left=None)
+ -- forward : -10.81
+ -- None : 0.90
+ -- right : -0.61
+ -- left : -10.52
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right=None, left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : -18.64
+ -- left : -39.25
+
+TrafficStates(waypoint='left', light='green', oncoming='right', right=None, left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.21
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right=None, left='right')
+ -- forward : -10.60
+ -- None : 1.66
+ -- right : 0.06
+ -- left : -9.02
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='right', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.77
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='right', left='left')
+ -- forward : 0.00
+ -- None : 2.64
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='left', left='left')
+ -- forward : 0.00
+ -- None : 1.78
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right=None, left='right')
+ -- forward : 0.00
+ -- None : 1.35
+ -- right : 0.62
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='right', left='forward')
+ -- forward : 0.00
+ -- None : 2.02
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right=None, left=None)
+ -- forward : -10.80
+ -- None : 0.27
+ -- right : 1.90
+ -- left : -9.17
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right=None, left='forward')
+ -- forward : -38.93
+ -- None : 1.91
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='left', left='forward')
+ -- forward : 0.00
+ -- None : 0.72
+ -- right : -17.77
+ -- left : -36.24
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='left', left='left')
+ -- forward : 0.00
+ -- None : -0.22
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='forward', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.41
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right=None, left=None)
+ -- forward : -9.04
+ -- None : 2.05
+ -- right : 0.56
+ -- left : -9.98
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='right', left='right')
+ -- forward : -0.27
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='left', left=None)
+ -- forward : -10.00
+ -- None : 0.91
+ -- right : 1.90
+ -- left : -8.35
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right='forward', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.91
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right=None, left='left')
+ -- forward : -10.65
+ -- None : 1.39
+ -- right : 0.27
+ -- left : -9.84
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='right', left=None)
+ -- forward : 0.00
+ -- None : 0.83
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='right', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -36.46
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='right', left='right')
+ -- forward : 0.00
+ -- None : 1.11
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right=None, left='left')
+ -- forward : -10.72
+ -- None : 2.62
+ -- right : 0.62
+ -- left : -9.80
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='left', left='forward')
+ -- forward : -0.18
+ -- None : 0.00
+ -- right : 0.18
+ -- left : 1.12
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='left', left='left')
+ -- forward : 2.21
+ -- None : -4.03
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='right', left=None)
+ -- forward : 0.47
+ -- None : -4.39
+ -- right : 0.07
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right='right', left='right')
+ -- forward : 2.31
+ -- None : -3.64
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right=None, left='left')
+ -- forward : 2.38
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right=None, left='right')
+ -- forward : -8.77
+ -- None : 0.25
+ -- right : 0.00
+ -- left : -9.84
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right='forward', left='right')
+ -- forward : 1.50
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right=None, left=None)
+ -- forward : -10.37
+ -- None : 0.33
+ -- right : 2.66
+ -- left : -9.79
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='forward', left=None)
+ -- forward : -40.29
+ -- None : 0.69
+ -- right : 2.19
+ -- left : -35.90
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='left', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.46
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 1.89
+ -- right : 0.00
+ -- left : -36.28
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='left', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.53
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='left', left='left')
+ -- forward : 0.00
+ -- None : -4.41
+ -- right : 0.00
+ -- left : 0.48
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='forward', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.34
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='forward', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.03
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='left', left=None)
+ -- forward : 2.14
+ -- None : -5.17
+ -- right : 0.24
+ -- left : 0.56
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right=None, left='left')
+ -- forward : 0.68
+ -- None : -4.47
+ -- right : 0.00
+ -- left : 2.60
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='left', left='forward')
+ -- forward : -35.81
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='left', left='right')
+ -- forward : -9.26
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right=None, left='left')
+ -- forward : 0.73
+ -- None : -4.19
+ -- right : 1.84
+ -- left : -0.03
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='left', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.92
+ -- left : -9.54
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='forward', left='left')
+ -- forward : 0.29
+ -- None : -4.27
+ -- right : 1.73
+ -- left : 0.72
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='forward', left='left')
+ -- forward : 0.59
+ -- None : 0.00
+ -- right : -0.38
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='forward', left=None)
+ -- forward : -0.09
+ -- None : -4.90
+ -- right : 1.25
+ -- left : 1.76
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='forward', left='left')
+ -- forward : -36.38
+ -- None : 2.42
+ -- right : 0.00
+ -- left : -39.04
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='right', left='forward')
+ -- forward : -35.77
+ -- None : 1.40
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='left', left='forward')
+ -- forward : -35.82
+ -- None : 0.39
+ -- right : -17.84
+ -- left : -39.06
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='forward', left='left')
+ -- forward : -35.73
+ -- None : 0.00
+ -- right : 1.80
+ -- left : -36.13
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right=None, left='forward')
+ -- forward : -35.60
+ -- None : 1.55
+ -- right : -19.17
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='left', left=None)
+ -- forward : 0.57
+ -- None : -4.71
+ -- right : 2.79
+ -- left : 0.28
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='right', left='right')
+ -- forward : 0.00
+ -- None : -4.51
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='left', left='right')
+ -- forward : -9.82
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -9.47
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right='left', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.17
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='right', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -35.52
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 0.93
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='forward', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.53
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right='right', left='left')
+ -- forward : 1.03
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right='left', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.31
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right=None, left='right')
+ -- forward : 0.00
+ -- None : 1.98
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='right', left='right')
+ -- forward : -8.45
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right=None, left=None)
+ -- forward : -9.90
+ -- None : 2.09
+ -- right : 0.05
+ -- left : -9.58
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right='left', left='right')
+ -- forward : 0.96
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right='forward', left='forward')
+ -- forward : 1.07
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='right', left='forward')
+ -- forward : -0.35
+ -- None : -5.06
+ -- right : 0.00
+ -- left : 1.34
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right='forward', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.12
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='right', left=None)
+ -- forward : -8.87
+ -- None : 0.00
+ -- right : 0.53
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : -3.91
+ -- right : 0.00
+ -- left : 0.99
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right=None, left=None)
+ -- forward : 1.50
+ -- None : -5.62
+ -- right : 0.61
+ -- left : 0.34
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='forward', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.50
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='forward', left='left')
+ -- forward : 1.89
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='right', left=None)
+ -- forward : -9.85
+ -- None : 0.54
+ -- right : 2.21
+ -- left : -10.54
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='right', left='forward')
+ -- forward : 0.00
+ -- None : 0.32
+ -- right : -18.79
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right=None, left=None)
+ -- forward : -9.70
+ -- None : 0.50
+ -- right : 1.12
+ -- left : -10.60
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right='right', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.35
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='left', left='right')
+ -- forward : -0.07
+ -- None : 0.00
+ -- right : 1.08
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='right', left=None)
+ -- forward : 0.42
+ -- None : -4.99
+ -- right : 2.62
+ -- left : 0.19
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right=None, left=None)
+ -- forward : -10.14
+ -- None : 1.85
+ -- right : -0.12
+ -- left : -40.35
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 1.49
+ -- right : 0.00
+ -- left : -36.07
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right=None, left='left')
+ -- forward : -9.44
+ -- None : 1.39
+ -- right : 0.73
+ -- left : -9.74
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='forward', left=None)
+ -- forward : -39.81
+ -- None : 1.04
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='left', left='right')
+ -- forward : -9.36
+ -- None : 1.96
+ -- right : -0.44
+ -- left : -9.68
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='right', left='left')
+ -- forward : 0.00
+ -- None : 1.31
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right=None, left='forward')
+ -- forward : 0.00
+ -- None : -4.31
+ -- right : 1.73
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='right', left='right')
+ -- forward : 0.00
+ -- None : 1.48
+ -- right : 0.00
+ -- left : -8.64
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right=None, left=None)
+ -- forward : 0.23
+ -- None : -5.43
+ -- right : 0.03
+ -- left : 1.43
+
+TrafficStates(waypoint='left', light='green', oncoming='right', right='left', left='left')
+ -- forward : 0.00
+ -- None : -4.24
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='forward', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.39
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right=None, left='forward')
+ -- forward : 2.16
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.69
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='forward', left='forward')
+ -- forward : 0.34
+ -- None : -4.85
+ -- right : 0.00
+ -- left : 1.69
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='left', left=None)
+ -- forward : -10.65
+ -- None : -0.20
+ -- right : 1.68
+ -- left : -9.50
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='right', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.50
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='left', left='forward')
+ -- forward : 2.72
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='forward', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.04
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='right', left=None)
+ -- forward : 0.00
+ -- None : -3.95
+ -- right : -0.14
+ -- left : -0.12
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='left', left='forward')
+ -- forward : 2.34
+ -- None : -5.70
+ -- right : 1.08
+ -- left : 0.63
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right='left', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.92
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='right', left=None)
+ -- forward : -9.55
+ -- None : 0.90
+ -- right : 1.33
+ -- left : -9.64
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='forward', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.18
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='left', left=None)
+ -- forward : 0.00
+ -- None : 1.96
+ -- right : 0.00
+ -- left : -9.63
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='left', left='forward')
+ -- forward : 0.00
+ -- None : 2.42
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right=None, left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 2.47
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='right', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.54
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right=None, left='left')
+ -- forward : 0.00
+ -- None : 1.35
+ -- right : 0.25
+ -- left : -36.35
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='right', left='forward')
+ -- forward : 0.00
+ -- None : -4.71
+ -- right : 1.29
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='left', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.71
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='right', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.65
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right=None, left='right')
+ -- forward : 0.00
+ -- None : 0.77
+ -- right : 1.22
+ -- left : -9.25
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='forward', left=None)
+ -- forward : 0.35
+ -- None : -5.78
+ -- right : 0.11
+ -- left : 1.36
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='forward', left='left')
+ -- forward : -36.43
+ -- None : 2.00
+ -- right : 0.84
+ -- left : -35.98
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right=None, left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.50
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='right', left='right')
+ -- forward : -9.71
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right=None, left=None)
+ -- forward : -9.60
+ -- None : 2.16
+ -- right : -0.17
+ -- left : -40.25
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='forward', left=None)
+ -- forward : 1.43
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.55
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right=None, left='forward')
+ -- forward : 1.94
+ -- None : -4.94
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='right', left='left')
+ -- forward : -8.13
+ -- None : 1.93
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right=None, left='left')
+ -- forward : 0.91
+ -- None : -4.72
+ -- right : 2.28
+ -- left : 0.41
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right=None, left=None)
+ -- forward : -10.20
+ -- None : 2.10
+ -- right : -0.00
+ -- left : -9.27
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='forward', left='right')
+ -- forward : 0.00
+ -- None : -4.64
+ -- right : 0.22
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right=None, left=None)
+ -- forward : 0.47
+ -- None : -5.05
+ -- right : 1.04
+ -- left : -0.25
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='left', left=None)
+ -- forward : -9.29
+ -- None : 0.00
+ -- right : 1.33
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right='right', left='left')
+ -- forward : 0.00
+ -- None : -4.39
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right=None, left='left')
+ -- forward : -9.60
+ -- None : 0.00
+ -- right : 1.52
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right=None, left=None)
+ -- forward : 0.28
+ -- None : -4.81
+ -- right : 2.03
+ -- left : 0.66
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='left', left=None)
+ -- forward : 2.16
+ -- None : -5.45
+ -- right : -0.03
+ -- left : 0.89
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='left', left='left')
+ -- forward : 0.00
+ -- None : 2.38
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right=None, left='left')
+ -- forward : -10.24
+ -- None : 0.00
+ -- right : 2.01
+ -- left : -8.84
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='forward', left='forward')
+ -- forward : 0.00
+ -- None : -5.45
+ -- right : 1.74
+ -- left : 0.81
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='left', left='left')
+ -- forward : 0.00
+ -- None : 1.57
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='left', left='left')
+ -- forward : -9.70
+ -- None : 2.45
+ -- right : -0.01
+ -- left : -8.82
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='forward', left='right')
+ -- forward : 0.00
+ -- None : -4.53
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='left', left='forward')
+ -- forward : -40.20
+ -- None : 0.45
+ -- right : -19.95
+ -- left : -35.30
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right='right', left='left')
+ -- forward : 0.00
+ -- None : -4.09
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right='right', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.69
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='forward', left=None)
+ -- forward : -40.57
+ -- None : 2.55
+ -- right : 0.00
+ -- left : -40.41
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right=None, left='forward')
+ -- forward : 0.00
+ -- None : 1.94
+ -- right : -18.72
+ -- left : -36.25
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='forward', left='forward')
+ -- forward : -35.82
+ -- None : 0.00
+ -- right : -18.70
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='left', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.65
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='right', left=None)
+ -- forward : -9.60
+ -- None : 1.25
+ -- right : 0.00
+ -- left : -10.51
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='left', left=None)
+ -- forward : -8.60
+ -- None : 0.00
+ -- right : 0.08
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='forward', right='forward', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 2.67
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='left', left='right')
+ -- forward : 0.00
+ -- None : -0.45
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right=None, left='forward')
+ -- forward : -40.00
+ -- None : 1.74
+ -- right : -20.61
+ -- left : -40.02
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='forward', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.46
+ -- left : 0.31
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='left', left='forward')
+ -- forward : 1.73
+ -- None : -4.29
+ -- right : -0.48
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='right', left=None)
+ -- forward : 0.00
+ -- None : -4.40
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right=None, left=None)
+ -- forward : 0.48
+ -- None : -4.98
+ -- right : 0.00
+ -- left : 2.77
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right=None, left='right')
+ -- forward : 0.88
+ -- None : -4.30
+ -- right : 0.15
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right=None, left=None)
+ -- forward : -0.18
+ -- None : -4.79
+ -- right : 0.17
+ -- left : 0.77
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='right', left='left')
+ -- forward : 0.00
+ -- None : -4.38
+ -- right : 0.00
+ -- left : 0.32
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right=None, left=None)
+ -- forward : -9.21
+ -- None : 0.30
+ -- right : 1.69
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='right', left='forward')
+ -- forward : 0.00
+ -- None : 1.15
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='right', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -35.69
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right=None, left='left')
+ -- forward : 0.00
+ -- None : -4.87
+ -- right : 0.00
+ -- left : 0.11
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='forward', left='right')
+ -- forward : 0.00
+ -- None : -4.06
+ -- right : 1.30
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right=None, left='forward')
+ -- forward : -39.16
+ -- None : 1.80
+ -- right : -20.78
+ -- left : -39.63
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='right', left=None)
+ -- forward : -0.39
+ -- None : -5.37
+ -- right : 0.00
+ -- left : 2.58
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='left', left=None)
+ -- forward : 1.02
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.09
+
+TrafficStates(waypoint='left', light='green', oncoming='right', right='forward', left='left')
+ -- forward : 0.20
+ -- None : 0.00
+ -- right : -0.30
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right='forward', left='forward')
+ -- forward : 0.53
+ -- None : -5.04
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right=None, left='right')
+ -- forward : -9.07
+ -- None : 2.74
+ -- right : -0.09
+ -- left : -36.04
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right=None, left='right')
+ -- forward : 2.31
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 1.86
+ -- right : -18.25
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='forward', left='forward')
+ -- forward : -35.53
+ -- None : 2.29
+ -- right : -20.15
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right=None, left='right')
+ -- forward : 2.12
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.19
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right=None, left='right')
+ -- forward : -9.37
+ -- None : 0.00
+ -- right : 1.04
+ -- left : -10.62
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right=None, left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : -0.01
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='right', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.53
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 2.31
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right=None, left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 2.17
+ -- left : -35.64
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right='left', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.09
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='right', left=None)
+ -- forward : 1.75
+ -- None : -5.13
+ -- right : 0.23
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='left', left=None)
+ -- forward : -0.01
+ -- None : -5.93
+ -- right : 0.00
+ -- left : 1.91
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='left', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.33
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='right', right='left', left='left')
+ -- forward : 0.48
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='left', left='left')
+ -- forward : 1.55
+ -- None : -4.11
+ -- right : 0.00
+ -- left : 1.01
+
+TrafficStates(waypoint='left', light='green', oncoming='forward', right=None, left='forward')
+ -- forward : 0.17
+ -- None : -3.95
+ -- right : 0.00
+ -- left : 1.11
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right=None, left='left')
+ -- forward : -9.45
+ -- None : 1.67
+ -- right : 0.00
+ -- left : -10.64
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='right', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.19
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 2.79
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : -18.71
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='forward', left=None)
+ -- forward : -36.32
+ -- None : 2.54
+ -- right : 0.79
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='forward', left=None)
+ -- forward : -35.87
+ -- None : 2.09
+ -- right : 0.00
+ -- left : -35.95
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right=None, left='left')
+ -- forward : -9.13
+ -- None : 0.00
+ -- right : 1.55
+ -- left : -8.93
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='right', left='forward')
+ -- forward : 0.00
+ -- None : 2.29
+ -- right : -17.14
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='right', left=None)
+ -- forward : 0.00
+ -- None : 2.11
+ -- right : 0.00
+ -- left : -9.88
+
+TrafficStates(waypoint='left', light='green', oncoming='right', right=None, left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.05
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right=None, left='left')
+ -- forward : 2.60
+ -- None : -4.62
+ -- right : -0.51
+ -- left : 0.79
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='forward', left='right')
+ -- forward : -36.68
+ -- None : 0.00
+ -- right : 0.32
+ -- left : -35.29
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='forward', left=None)
+ -- forward : 0.00
+ -- None : 1.60
+ -- right : 0.44
+ -- left : -39.15
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right=None, left='forward')
+ -- forward : 0.72
+ -- None : -3.95
+ -- right : 1.63
+ -- left : 0.93
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right='left', left=None)
+ -- forward : 2.64
+ -- None : 0.00
+ -- right : -0.14
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right=None, left=None)
+ -- forward : 0.25
+ -- None : -4.79
+ -- right : 1.76
+ -- left : -0.14
+
+TrafficStates(waypoint='left', light='red', oncoming=None, right='right', left='left')
+ -- forward : -8.94
+ -- None : 2.31
+ -- right : 1.23
+ -- left : -9.77
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='forward', left='left')
+ -- forward : 0.00
+ -- None : -3.87
+ -- right : 1.91
+ -- left : 0.24
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right=None, left='forward')
+ -- forward : -36.43
+ -- None : 2.38
+ -- right : -18.43
+ -- left : -36.01
+
+TrafficStates(waypoint='left', light='green', oncoming='right', right='forward', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 2.28
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right=None, left='right')
+ -- forward : 1.92
+ -- None : -4.16
+ -- right : -0.16
+ -- left : -0.09
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='left', left='right')
+ -- forward : -10.57
+ -- None : 0.00
+ -- right : 1.49
+ -- left : -9.82
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='left', left='right')
+ -- forward : 0.00
+ -- None : -4.99
+ -- right : 1.18
+ -- left : 1.42
+
+TrafficStates(waypoint='right', light='green', oncoming=None, right='forward', left='left')
+ -- forward : 0.00
+ -- None : -5.10
+ -- right : 1.72
+ -- left : 0.73
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right=None, left=None)
+ -- forward : -9.28
+ -- None : 1.08
+ -- right : 0.15
+ -- left : -9.97
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='forward', left='forward')
+ -- forward : -39.99
+ -- None : 1.66
+ -- right : -17.80
+ -- left : -35.49
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='right', left=None)
+ -- forward : -9.94
+ -- None : 2.00
+ -- right : 0.77
+ -- left : -10.57
+
+TrafficStates(waypoint='right', light='red', oncoming='forward', right='forward', left=None)
+ -- forward : -36.40
+ -- None : -0.57
+ -- right : 1.50
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='forward', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.51
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='green', oncoming='left', right='left', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 1.61
+
+TrafficStates(waypoint='left', light='red', oncoming='left', right='left', left=None)
+ -- forward : -10.81
+ -- None : 2.50
+ -- right : 0.78
+ -- left : -10.03
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='right', left='forward')
+ -- forward : 1.14
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='left', left='left')
+ -- forward : -9.66
+ -- None : 1.22
+ -- right : 0.00
+ -- left : -9.66
+
+TrafficStates(waypoint='forward', light='red', oncoming='forward', right='left', left=None)
+ -- forward : 0.00
+ -- None : 0.48
+ -- right : 0.36
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='right', left='forward')
+ -- forward : -35.34
+ -- None : 1.98
+ -- right : -18.48
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='right', right='left', left='forward')
+ -- forward : -35.32
+ -- None : 1.39
+ -- right : 0.00
+ -- left : -36.35
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='forward', left='right')
+ -- forward : 0.00
+ -- None : -5.86
+ -- right : 0.00
+ -- left : 2.69
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right=None, left='left')
+ -- forward : -10.04
+ -- None : 0.00
+ -- right : 1.56
+ -- left : -10.11
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='right', left=None)
+ -- forward : 1.28
+ -- None : 0.00
+ -- right : 0.30
+ -- left : 0.74
+
+TrafficStates(waypoint='forward', light='green', oncoming=None, right='right', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.04
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='right', right='forward', left=None)
+ -- forward : 1.18
+ -- None : 0.00
+ -- right : 0.23
+ -- left : 0.57
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='left', left='right')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.00
+ -- left : -9.05
+
+TrafficStates(waypoint='left', light='green', oncoming=None, right='forward', left='forward')
+ -- forward : 0.60
+ -- None : -3.62
+ -- right : -0.05
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='forward', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 0.96
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='red', oncoming='left', right='forward', left='left')
+ -- forward : -36.60
+ -- None : 0.01
+ -- right : 0.00
+ -- left : -39.68
+
+TrafficStates(waypoint='right', light='red', oncoming=None, right='forward', left='left')
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 2.19
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right=None, left='left')
+ -- forward : 0.00
+ -- None : -4.45
+ -- right : 1.05
+ -- left : -0.02
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='forward', left='forward')
+ -- forward : 2.14
+ -- None : 0.00
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming='left', right='left', left='right')
+ -- forward : 0.00
+ -- None : 1.41
+ -- right : 0.10
+ -- left : -9.88
+
+TrafficStates(waypoint='forward', light='green', oncoming='left', right='left', left='left')
+ -- forward : 2.41
+ -- None : -5.63
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='left', left='left')
+ -- forward : 0.00
+ -- None : 1.40
+ -- right : 0.98
+ -- left : -10.42
+
+TrafficStates(waypoint='forward', light='red', oncoming=None, right='left', left=None)
+ -- forward : -9.92
+ -- None : 2.22
+ -- right : -0.35
+ -- left : -10.83
+
+TrafficStates(waypoint='right', light='red', oncoming='right', right='forward', left='forward')
+ -- forward : 0.00
+ -- None : 1.33
+ -- right : 0.00
+ -- left : 0.00
+
+TrafficStates(waypoint='left', light='red', oncoming='forward', right='forward', left='left')
+ -- forward : -35.13
+ -- None : 2.19
+ -- right : 0.00
+ -- left : -36.54
+
+TrafficStates(waypoint='forward', light='red', oncoming='right', right='left', left=None)
+ -- forward : -10.28
+ -- None : 2.25
+ -- right : 0.00
+ -- left : -36.29
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='right', left=None)
+ -- forward : 0.00
+ -- None : 0.00
+ -- right : 1.81
+ -- left : 0.00
+
+TrafficStates(waypoint='right', light='green', oncoming='left', right='right', left='right')
+ -- forward : 0.00
+ -- None : -4.66
+ -- right : 0.00
+ -- left : 0.00
+
